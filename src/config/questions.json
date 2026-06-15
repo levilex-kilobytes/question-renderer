@@ -1,0 +1,207 @@
+[
+  {
+    "id": "fullName",
+    "type": "text",
+    "label": "Full Name",
+    "placeholder": "Enter your full name",
+    "validation": {
+      "required": true,
+      "minLength": 3,
+      "maxLength": 100
+    }
+  },
+  {
+    "id": "email",
+    "type": "text",
+    "label": "Email Address",
+    "placeholder": "Enter your email address",
+    "validation": {
+      "required": true,
+      "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+    }
+  },
+  {
+    "id": "phoneNumber",
+    "type": "text",
+    "label": "Phone Number",
+    "placeholder": "Enter your phone number",
+    "validation": {
+      "required": true,
+      "minLength": 7,
+      "maxLength": 20
+    }
+  },
+  {
+    "id": "currentLocation",
+    "type": "text",
+    "label": "Current Location (city and country)",
+    "placeholder": "e.g. Nairobi, Kenya",
+    "validation": {
+      "required": true,
+      "minLength": 3
+    }
+  },
+  {
+    "id": "currentOccupation",
+    "type": "radio",
+    "label": "Current Occupation",
+    "options": [
+      { "label": "Student", "value": "student" },
+      { "label": "Employed full time", "value": "employed_full_time" },
+      { "label": "Employed part time", "value": "employed_part_time" },
+      { "label": "Self employed", "value": "self_employed" },
+      { "label": "Unemployed", "value": "unemployed" },
+      { "label": "Other", "value": "other" }
+    ],
+    "validation": {
+      "required": true
+    }
+  },
+  {
+    "id": "educationLevel",
+    "type": "radio",
+    "label": "Highest Level of Education Completed",
+    "options": [
+      { "label": "High school / KCSE", "value": "high_school" },
+      { "label": "Diploma", "value": "diploma" },
+      { "label": "Bachelor's degree", "value": "bachelors" },
+      { "label": "Master's degree or higher", "value": "masters" },
+      { "label": "Other", "value": "other" }
+    ],
+    "validation": {
+      "required": true
+    }
+  },
+  {
+    "id": "priorTechExperience",
+    "type": "radio",
+    "label": "Do you have any prior experience in tech or programming?",
+    "options": [
+      { "label": "Yes, I have some experience", "value": "yes" },
+      { "label": "No, I am completely new to tech", "value": "no" }
+    ],
+    "validation": {
+      "required": true
+    }
+  },
+  {
+    "id": "techExperienceDescription",
+    "type": "textarea",
+    "label": "If yes, briefly describe your experience",
+    "placeholder": "Describe any tech or programming experience you have...",
+    "validation": {
+      "required": false
+    }
+  },
+  {
+    "id": "hasLaptop",
+    "type": "radio",
+    "label": "Do you have a personal laptop?",
+    "options": [
+      { "label": "Yes", "value": "yes" },
+      { "label": "No", "value": "no" }
+    ],
+    "validation": {
+      "required": true
+    }
+  },
+  {
+    "id": "preferredLearningMode",
+    "type": "radio",
+    "label": "What is your preferred mode of learning?",
+    "options": [
+      { "label": "Online (fully remote learning)", "value": "online" },
+      { "label": "Physical (on-site learning in Kisii)", "value": "physical" },
+      { "label": "Hybrid (mostly online with an on-site session during the final week)", "value": "hybrid" },
+      { "label": "I need more information before deciding", "value": "undecided" }
+    ],
+    "validation": {
+      "required": true
+    }
+  },
+  {
+    "id": "whyJoin",
+    "type": "textarea",
+    "label": "Why do you want to join Reduzer School?",
+    "placeholder": "Minimum 100 words...",
+    "validation": {
+      "required": true,
+      "minLength": 100
+    }
+  },
+  {
+    "id": "biggestObstacle",
+    "type": "textarea",
+    "label": "What is the biggest obstacle standing between you and a career in tech right now?",
+    "placeholder": "Be honest and specific...",
+    "validation": {
+      "required": true,
+      "minLength": 20
+    }
+  },
+  {
+    "id": "failureStory",
+    "type": "textarea",
+    "label": "Tell me about a time you failed at something difficult. What did you do after?",
+    "placeholder": "Share your experience...",
+    "validation": {
+      "required": true,
+      "minLength": 20
+    }
+  },
+  {
+    "id": "fallBehind",
+    "type": "textarea",
+    "label": "If you fall behind in the program, what will you do?",
+    "placeholder": "Describe how you would handle falling behind...",
+    "validation": {
+      "required": true,
+      "minLength": 20
+    }
+  },
+  {
+    "id": "adaptToChange",
+    "type": "textarea",
+    "label": "Imagine requirements change halfway through a project. How do you adapt?",
+    "placeholder": "Describe your approach to change...",
+    "validation": {
+      "required": true,
+      "minLength": 20
+    }
+  },
+  {
+    "id": "workStyle",
+    "type": "textarea",
+    "label": "Do you prefer working alone or in a group? Share an example of collaboration.",
+    "placeholder": "Share your preference and an example...",
+    "validation": {
+      "required": true,
+      "minLength": 20
+    }
+  },
+  {
+    "id": "hearAboutUs",
+    "type": "radio",
+    "label": "How did you hear about Reduzer School?",
+    "options": [
+      { "label": "Instagram", "value": "instagram" },
+      { "label": "Twitter / X", "value": "twitter" },
+      { "label": "WhatsApp", "value": "whatsapp" },
+      { "label": "From a friend or colleague", "value": "referral" },
+      { "label": "Google search", "value": "google" },
+      { "label": "Other", "value": "other" }
+    ],
+    "validation": {
+      "required": true
+    }
+  },
+  {
+    "id": "anythingElse",
+    "type": "textarea",
+    "label": "Is there anything else you would like us to know about you?",
+    "placeholder": "Optional — share anything you feel is relevant...",
+    "validation": {
+      "required": false
+    }
+  }
+]

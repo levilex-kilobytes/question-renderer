@@ -1,73 +1,149 @@
-# React + TypeScript + Vite
+# Question Renderer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reusable React form renderer driven entirely by a JSON config file. Built with Vite, React, and TypeScript.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to run the app
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/YOUR_USERNAME/question-renderer.git
+cd question-renderer
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## How to run tests
+
+```bash
+npx vitest
 ```
+
+To run tests once without watch mode:
+
+```bash
+npx vitest run
+```
+
+---
+
+## Example question data
+
+Questions live in `src/config/questions.json`. Each question object follows this shape:
+
+```json
+{
+  "id": "fullName",
+  "type": "text",
+  "label": "Full Name",
+  "placeholder": "Enter your full name",
+  "validation": {
+    "required": true,
+    "minLength": 3,
+    "maxLength": 100
+  }
+}
+```
+
+---
+
+## How each question type works
+
+| Type | Rendered element | Answer value |
+|---|---|---|
+| `text` | `<input type="text" />` | string |
+| `textarea` | `<textarea />` | string |
+| `select` | `<select />` with options | string |
+| `radio` | One radio input per option | string |
+| `checkbox` | One checkbox per option | string[] |
+
+---
+
+## How to change the form
+
+Open `src/config/questions.json` and add, remove, or edit questions. The form updates automatically. No code changes needed.
+
+To add a new question:
+
+```json
+{
+  "id": "city",
+  "type": "text",
+  "label": "City",
+  "placeholder": "Enter your city",
+  "validation": {
+    "required": true,
+    "minLength": 2
+  }
+}
+```
+
+---
+
+## Validation rules
+
+Each question supports these optional validation rules:
+
+| Rule | Applies to | Description |
+|---|---|---|
+| `required` | all types | Field must not be empty |
+| `minLength` | text, textarea | Minimum number of characters |
+| `maxLength` | text, textarea | Maximum number of characters |
+| `pattern` | text | Regex pattern the value must match |
+
+---
+
+## How allowPasting works
+
+The `QuestionRenderer` component accepts an `allowPasting` prop.
+
+```tsx
+<QuestionRenderer
+  questions={questions}
+  allowPasting={false}
+  onSubmit={handleSubmit}
+/>
+```
+
+- `allowPasting={false}` — blocks paste into all text and textarea fields
+- `allowPasting={true}` — allows paste normally
+
+This is useful for assessments where you want students to type their own answers.
+
+---
+
+## Submitted answer format
+
+On submit, `onSubmit` is called with an object where each key is the question `id`:
+
+```json
+{
+  "fullName": "levi monda",
+  "motivation": "I want to join because...",
+  "educationLevel": "bachelors",
+  "preferredTrack": "fullstack",
+  "skills": ["html", "css", "javascript"]
+}
+```
+
+Checkbox answers are always arrays. All other types are strings.
+
+---
+
+## Project structure
+src/
+  components/
+    QuestionRenderer.tsx   — the reusable form component
+  config/
+    questions.json         — edit this to change the form
+  types/
+    question.ts            — TypeScript type definitions
+  tests/
+    QuestionRenderer.test.tsx  — automated tests
+    setup.ts               — test environment setup
+  App.tsx                  — demo page
+  main.tsx                 — app entry point

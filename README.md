@@ -133,18 +133,3 @@ On submit, `onSubmit` is called with an object where each key is the question `i
 Checkbox answers are always arrays. All other types are strings.
 
 ---
----
-## Project structure
-src/
-  components/
-    QuestionRenderer.tsx   — the reusable form component
-  config/
-    questions.json         — edit this to change the form
-  types/
-    question.ts            — TypeScript type definitions
-  tests/
-    QuestionRenderer.test.tsx  — automated tests
-    setup.ts               — test environment setup
-  App.tsx                  — demo page
-  main.tsx                 — app entry point
----

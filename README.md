@@ -133,7 +133,7 @@ On submit, `onSubmit` is called with an object where each key is the question `i
 Checkbox answers are always arrays. All other types are strings.
 
 ---
-
+---
 ## Project structure
 src/
   components/
@@ -147,3 +147,4 @@ src/
     setup.ts               — test environment setup
   App.tsx                  — demo page
   main.tsx                 — app entry point
+---
